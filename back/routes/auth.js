@@ -7,6 +7,19 @@ const db = require('../db');
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// Add CORS headers middleware
+router.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  // Handle OPTIONS method
+  if ('OPTIONS' === req.method) {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 // Register
 router.post('/register', (req, res) => {
   const schema = Joi.object({ name: Joi.string().required(), email: Joi.string().email().required(), password: Joi.string().min(6).required(), cin: Joi.string().required(), blood_type: Joi.string().required() });
