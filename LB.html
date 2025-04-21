@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0D0D0D">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>THE BOTTOM FRAGS - Leaderboard</title>
+    <!-- External CSS Links -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style/bootstrap.css">
+    <link rel="stylesheet" href="assets/style/all.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/style/LB.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a href="home.html" class="logo navbar-brand">
+                <img src="assets/images/logoo12-removebg-preview.png" alt="Logo" height="40">
+                THE BOTTOM FRAGS
+            </a>
+
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto nav-links">
+                    <li class="nav-item">
+                        <a href="home.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+
+                <!-- Auth Buttons -->
+                <div id="authButtons" class="d-flex auth-buttons" style="display: none;">
+                    <a href="signin.html" class="btn login-btn">Login</a>
+                    <a href="signin.html" class="btn signup-btn ms-2">Sign Up</a>
+                </div>
+                <!-- Profile Dropdown -->
+                <div id="profileDropdown" class="nav-item dropdown" style="display: none;">
+                    <a href="profile.html" class="nav-link profile-button">
+                        <img id="userAvatar" src="assets/img/unknown_profile.png" alt="Profile" style="width:40px;height:40px;border-radius:50%;" />
+                        <span id="profileName"></span>
+                    </a>
+                    <div id="dropdownMenu" class="dropdown-menu">
+                        <a class="dropdown-item" href="profile.html">Profile</a>
+                        <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-container">
+        <!-- Header Section -->
+        <header class="header-section">
+            <nav class="back-nav">
+                <button class="back-button">← Back</button>
+            </nav>
+            <div class="title-container">
+                <h1 class="title">Leaderboards</h1>
+                <p class="subtitle">Track your LifePoints and see who's saving lives fastest</p>
+            </div>
+        </header>
+
+        <!-- Scope Toggle Section -->
+        <div class="scope-toggle">
+            <button class="toggle-btn active">All Time</button>
+            <button class="toggle-btn">Event</button>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="table-container">
+            <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Leaderboard Rankings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="user-row">
+                                <div class="rank rank-gold">
+                                    <span>1</span>
+                                    <i class='bx bxs-crown'></i>
+                                </div>
+                                <div class="donor-info">
+                                    <div class="donor-avatar">
+                                        <img src="assets/images/avatar1.jpg" alt="John Doe">
+                                    </div>
+                                    <div class="donor-details">
+                                        <span class="donor-name">John Doe</span>
+                                        <span class="donor-badge">Elite Donor</span>
+                                    </div>
+                                </div>
+                                <div class="donations">
+                                    <span class="donations-number">12</span>
+                                </div>
+                                <div class="points">
+                                    <span class="points-number">1,500</span>
+                                    <span class="points-label">pts</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="current-user">
+                        <td>
+                            <div class="user-row">
+                                <div class="rank rank-silver">
+                                    <span>2</span>
+                                    <i class='bx bxs-medal'></i>
+                                </div>
+                                <div class="donor-info">
+                                    <div class="donor-avatar">
+                                        <img src="assets/images/avatar-you.jpg" alt="You">
+                                        <div class="online-badge"></div>
+                                    </div>
+                                    <div class="donor-details">
+                                        <span class="donor-name">You</span>
+                                        <span class="donor-badge">Regular Donor</span>
+                                    </div>
+                                </div>
+                                <div class="donations">
+                                    <span class="donations-number">8</span>
+                                </div>
+                                <div class="points">
+                                    <span class="points-number">1,200</span>
+                                    <span class="points-label">pts</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="user-row">
+                                <div class="rank rank-bronze">
+                                    <span>3</span>
+                                    <i class='bx bxs-medal'></i>
+                                </div>
+                                <div class="donor-info">
+                                    <div class="donor-avatar">
+                                        <img src="assets/images/avatar3.jpg" alt="Jane Smith">
+                                    </div>
+                                    <div class="donor-details">
+                                        <span class="donor-name">Jane Smith</span>
+                                        <span class="donor-badge">New Donor</span>
+                                    </div>
+                                </div>
+                                <div class="donations">
+                                    <span class="donations-number">6</span>
+                                </div>
+                                <div class="points">
+                                    <span class="points-number">1,000</span>
+                                    <span class="points-label">pts</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-donate-blood'></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Donations</h3>
+                        <div class="stat-value">1,234</div>
+                        <div class="stat-trend positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span>12% this month</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-group'></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Donors</h3>
+                        <div class="stat-value">856</div>
+                        <div class="stat-trend positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span>8% this month</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class='bx bx-heart' ></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Lives Saved</h3>
+                        <div class="stat-value">3,702</div>
+                        <div class="stat-trend positive">
+                            <i class='bx bx-up-arrow-alt'></i>
+                            <span>15% this month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement Section -->
+        <div class="achievements-section">
+            <h2 class="section-title">Recent Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class='bx bxs-trophy'></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>First Time Donor</h3>
+                        <p>Successfully completed your first blood donation</p>
+                        <div class="achievement-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%"></div>
+                            </div>
+                            <span class="progress-text">Completed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class='bx bxs-heart'></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Regular Donor</h3>
+                        <p>Donated blood 5 times this year</p>
+                        <div class="achievement-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                            <span class="progress-text">3/5 Donations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievement-card">
+                    <div class="achievement-icon">
+                        <i class='bx bxs-star'></i>
+                    </div>
+                    <div class="achievement-info">
+                        <h3>Life Saver</h3>
+                        <p>Your donations have helped save 10 lives</p>
+                        <div class="achievement-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%"></div>
+                            </div>
+                            <span class="progress-text">8/10 Lives</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div class="events-section">
+            <h2 class="section-title">Upcoming Donation Events</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">25</span>
+                        <span class="month">MAR</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Community Blood Drive</h3>
+                        <p class="event-location">
+                            <i class='bx bxs-map'></i>
+                            Central Hospital
+                        </p>
+                        <p class="event-time">
+                            <i class='bx bxs-time'></i>
+                            9:00 AM - 5:00 PM
+                        </p>
+                        <div class="event-stats">
+                            <span class="spots-left">
+                                <i class='bx bxs-user-plus'></i>
+                                12 spots left
+                            </span>
+                            <button class="btn-register">Register</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card urgent">
+                    <div class="event-date">
+                        <span class="date">28</span>
+                        <span class="month">MAR</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Emergency Blood Drive</h3>
+                        <div class="urgent-badge">Urgent Need</div>
+                        <p class="event-location">
+                            <i class='bx bxs-map'></i>
+                            East Medical Center
+                        </p>
+                        <p class="event-time">
+                            <i class='bx bxs-time'></i>
+                            10:00 AM - 6:00 PM
+                        </p>
+                        <div class="event-stats">
+                            <span class="spots-left">
+                                <i class='bx bxs-user-plus'></i>
+                                5 spots left
+                            </span>
+                            <button class="btn-register urgent">Register</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="date">02</span>
+                        <span class="month">APR</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Mobile Blood Drive</h3>
+                        <p class="event-location">
+                            <i class='bx bxs-map'></i>
+                            City Mall
+                        </p>
+                        <p class="event-time">
+                            <i class='bx bxs-time'></i>
+                            11:00 AM - 4:00 PM
+                        </p>
+                        <div class="event-stats">
+                            <span class="spots-left">
+                                <i class='bx bxs-user-plus'></i>
+                                20 spots left
+                            </span>
+                            <button class="btn-register">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Banner -->
+        <div class="cta-banner">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2>Ready to Save Lives?</h2>
+                    <p>Your next donation could help save up to 3 lives. Schedule your donation today!</p>
+                </div>
+                <div class="cta-actions">
+                    <button class="btn-schedule">
+                        <i class='bx bx-calendar-plus'></i>
+                        Schedule Donation
+                    </button>
+                    <button class="btn-learn-more">
+                        Learn More
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Meta -->
+        <footer class="meta">
+            <p>Last updated: <span id="timestamp">2024-03-19 15:30</span></p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Add this before the closing </body> tag, after the Bootstrap script -->
+
+    <script src="assets/script/LB.js"></script>
+    <script src="assets/script/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Listen for avatar updates from other pages
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'avatar_updated') {
+                    const update = JSON.parse(e.newValue);
+                    if (update && update.avatar_url) {
+                        const userAvatar = document.getElementById('userAvatar');
+                        if (userAvatar) {
+                            userAvatar.src = update.avatar_url;
+                        }
+                    }
+                }
+            });
+
+            // Check auth state and update UI
+            function updateAuthUI() {
+                const authButtons = document.getElementById('authButtons');
+                const profileDropdown = document.getElementById('profileDropdown');
+                const profileName = document.getElementById('profileName');
+                const userAvatar = document.getElementById('userAvatar');
+
+                if (AuthService.isLoggedIn()) {
+                    // Remove auth buttons completely when logged in
+                    if (authButtons) {
+                        authButtons.style.display = 'none';
+                        authButtons.innerHTML = ''; // Clear the buttons
+                    }
+                    // Show profile dropdown
+                    if (profileDropdown) {
+                        profileDropdown.style.display = 'block';
+                        profileName.textContent = AuthService.getUserName();
+                        userAvatar.src = AuthService.getUserAvatar() || 'assets/img/unknown_profile.png';
+                    }
+                } else {
+                    // Show auth buttons, hide profile
+                    if (authButtons) {
+                        authButtons.style.display = 'flex';
+                        authButtons.innerHTML = `
+                            <a href="signin.html" class="btn login-btn">Login</a>
+                            <a href="signin.html" class="btn signup-btn ms-2">Sign Up</a>
+                        `;
+                    }
+                    if (profileDropdown) {
+                        profileDropdown.style.display = 'none';
+                    }
+                }
+            }
+
+            // Initial check
+            updateAuthUI();
+
+            // Listen for auth state changes
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'authState') {
+                    updateAuthUI();
+                }
+            });
+
+            // Handle logout
+            const logoutButton = document.getElementById('logoutButton');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    AuthService.logout();
+                    updateAuthUI();
+                });
+            }
+
+            function toggleDropdown() {
+                const dropdownMenu = document.getElementById('dropdownMenu');
+                dropdownMenu.classList.toggle('show');
+            }
+
+            // Close dropdown when clicking outside
+            window.onclick = function(event) {
+                if (!event.target.matches('.profile-button') && !event.target.matches('.profile-button *')) {
+                    const dropdowns = document.getElementsByClassName('dropdown-menu');
+                    for (let dropdown of dropdowns) {
+                        if (dropdown.classList.contains('show')) {
+                            dropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

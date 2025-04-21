@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Blood Donation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/style/all.css">
+    <link rel="stylesheet" href="assets/style/profile.css">
+    <!-- Theme styling for donor levels -->
+    <style>
+        .theme-gold .stat-header i, .theme-gold .stat-value { color: gold; }
+        .theme-silver .stat-header i, .theme-silver .stat-value { color: silver; }
+        .theme-bronze .stat-header i, .theme-bronze .stat-value { color: peru; }
+        .theme-iron .stat-header i, .theme-iron .stat-value { color: gray; }
+    </style>
+</head>
+<body>
+    <!-- Updated navbar with profile picture -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="logo" href="home.html">
+                <img src="assets/img/logo.png" alt="Logo">
+                <span class="navbar-brand">THE BOTTOM FRAGS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class='bx bx-menu'></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto nav-links">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="LB.html">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#donate">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item profile-dropdown">
+                        <button class="profile-button" onclick="toggleDropdown()">
+                            <img id="profileNavAvatar" src="assets/img/unknown_profile.png" alt="Profile" class="profile-picture">
+                            <span id="navProfileName" class="profile-name">User</span>
+                            <i class='bx bx-chevron-down'></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <a href="profile.html"><i class='bx bxs-user'></i> Profile</a>
+                            <a href="#"><i class='bx bxs-dashboard'></i> Dashboard</a>
+                            <a href="#"><i class='bx bxs-heart'></i> My Donations</a>
+                            <a href="#"><i class='bx bxs-cog'></i> Settings</a>
+                            <hr>
+                            <a href="#" onclick="handleLogout()"><i class='bx bx-log-out'></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-cover">
+            <!-- Left Column - Avatar -->
+            <div class="profile-column avatar-column">
+                <div class="profile-avatar">
+                    <img id="profileAvatar" src="assets/img/unknown_profile.png" alt="Profile Picture">
+                    <div class="avatar-upload">
+                        <input type="file" id="avatarInput" accept="image/png,image/jpeg" style="display: none;">
+                        <button class="edit-avatar" onclick="document.getElementById('avatarInput').click()">
+                            <i class='bx bxs-camera'></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Column - User Info -->
+            <div class="profile-column info-column">
+                <div class="user-main-info">
+                    <h1 id="profileName">User Name</h1>
+                    <p id="profileEmail" class="user-email">email@example.com</p>
+                </div>
+                <div class="user-status-tags">
+                    <span id="bloodTypeTag" class="status-tag blood-type">
+                        <i class='bx bxs-droplet'></i>
+                        Blood Type 
+                    </span>
+                    <span id="donorLevelTag" class="status-tag donor-level">
+                        <img id="infoRankIcon" src="assets/img/RANK/iron.png" alt="Iron Donor" style="height:24px;" />
+                        <span id="infoRankText">Iron</span>
+                    </span>
+                    <span class="status-tag donation-count" id="infoDonationCount">
+                        <i class='bx bxs-heart-circle'></i>
+                        0 Donations
+                    </span>
+                </div>
+            </div>
+
+            <!-- Right Column - Stats -->
+            <div id="statsColumn" class="profile-column stats-column">
+                <div class="stats-wrapper">
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <i class='bx bxs-coin-stack'></i>
+                            <span>LifePoints</span>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <i class='bx bxs-heart-circle'></i>
+                            <span>Lives Saved</span>
+                        </div>
+                        <div class="stat-value">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <i class='bx bxs-trophy'></i>
+                            <span>Rank</span>
+                        </div>
+                        <div class="stat-value">
+                            <img id="rankIcon" src="assets/img/RANK/iron.png" alt="Iron Donor" style="height:40px;" />
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-header">
+                            <i class='bx bxs-time-five'></i>
+                            <span>Days to Next</span>
+                        </div>
+                        <div class="stat-value">15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="content-container">
+            <!-- Left Side Tabs -->
+            <div class="tabs-sidebar">
+                <ul class="nav flex-column profile-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#overview">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#activity">Activity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#programs">Programs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#donation-history">Donation History</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Side Content -->
+            <div class="tab-content main-tab-content">
+                <!-- Overview Tab Content -->
+                <div class="tab-pane fade show active" id="overview">
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Progress Statistics</h3>
+                            <div class="date-selector">
+                                <i class='bx bx-calendar'></i>
+                                <span>Last Week</span>
+                            </div>
+                        </div>
+                        <div class="activity-stats-grid">
+                            <!-- Total Activity Card -->
+                            <div class="activity-card">
+                                <div class="activity-card-header">
+                                    <h4>0%</h4>
+                                    <span>Total activity</span>
+                                </div>
+                                <div class="activity-chart">
+                                    <!-- Your spider/radar chart goes here -->
+                                    <div class="chart-legend">
+                                        <div class="legend-item">
+                                            <span class="legend-dot in-progress"></span>
+                                            <span>In progress</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-dot completed"></span>
+                                            <span>Completed</span>
+                                        </div>
+                                        <div class="legend-item">
+                                            <span class="legend-dot upcoming"></span>
+                                            <span>Upcoming</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Blood Donated Card -->
+                            <div class="activity-card">
+                                <div class="activity-card-header">
+                                    <div class="blood-volume">
+                                        <h4>2.5</h4>
+                                        <span class="unit">L</span>
+                                    </div>
+                                    <span>Blood Donated</span>
+                                </div>
+                                <div class="blood-bottle-container">
+                                    <div class="blood-bottle">
+                                        <div class="blood-fill"></div>
+                                        <div class="volume-labels">
+                                            <span class="volume-label">5.0</span>
+                                            <span class="volume-label">4.0</span>
+                                            <span class="volume-label">3.0</span>
+                                            <span class="volume-label">2.0</span>
+                                            <span class="volume-label">1.0</span>
+                                        </div>
+                                    </div>
+                                    <div class="measurement-lines">
+                                        <span class="measure-line">5.0L</span>
+                                        <span class="measure-line">4.0L</span>
+                                        <span class="measure-line">3.0L</span>
+                                        <span class="measure-line">2.0L</span>
+                                        <span class="measure-line">1.0L</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Section -->
+                    <div class="content-section">
+                        <div class="section-header">
+                            <h3>Current Projects</h3>
+                        </div>
+                        <div class="projects-grid">
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h4>Community Outreach for Sustainable Living</h4>
+                                    <span class="status-badge active">Active</span>
+                                </div>
+                                <div class="project-details">
+                                    <div class="detail-item">
+                                        <i class='bx bx-calendar'></i>
+                                        <span>October 17, 2024</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class='bx bx-group'></i>
+                                        <span>Local communities, NGOs</span>
+                                    </div>
+                                </div>
+                                <div class="project-team">
+                                    <!-- Add team member avatars here -->
+                                </div>
+                            </div>
+                            <!-- Add more project cards as needed -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donation History Tab -->
+                <div class="tab-pane fade" id="donation-history">
+                    <div class="donation-history-container">
+                        <!-- Header with Export Option -->
+                        <div class="content-section">
+                            <div class="section-header">
+                                <h3>Donation Timeline</h3>
+                                <button class="export-btn">
+                                    <i class='bx bx-download'></i>
+                                    Export Records
+                                </button>
+                            </div>
+
+                            <!-- Timeline View -->
+                            <div class="timeline-wrapper">
+                                <!-- Single Timeline Entry -->
+                                <!-- Timeline entries will be dynamically generated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievements Tab -->
+                <div class="tab-pane fade" id="programs">
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class='bx bxs-medal'></i>
+                            </div>
+                            <h4>First Time Donor</h4>
+                            <p>Completed your first blood donation</p>
+                            <div class="achievement-date">Earned Mar 15, 2024</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shop Tab -->
+                <div class="tab-pane fade" id="shop">
+                    <div class="shop-container">  <!-- New container div with black background -->
+                        <div class="rewards-section">
+                            <div class="current-points">
+                                <h3>Your LifePoints Balance</h3>
+                                <div class="points-display">
+                                    <i class='bx bxs-coin-stack'></i>
+                                    750
+                                </div>
+                                <p class="points-subtitle">Keep donating to earn more points!</p>
+                            </div>
+                            
+                            <div class="rewards-categories">
+                                <button class="category-btn active">All Rewards</button>
+                                <button class="category-btn">Health & Wellness</button>
+                                <button class="category-btn">Shopping Vouchers</button>
+                                <button class="category-btn">Exclusive Merchandise</button>
+                            </div>
+
+                            <div class="rewards-grid">
+                                <!-- Health Checkup Reward Card -->
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/health-checkup.jpg" alt="Health Checkup">
+                                        <div class="reward-category">Health & Wellness</div>
+                                    </div>
+                                    <div class="reward-info">
+                                        <h4>Complete Health Checkup</h4>
+                                        <p>Comprehensive health screening at partner hospitals</p>
+                                        <div class="reward-footer">
+                                            <div class="points-cost">
+                                                <i class='bx bxs-coin-stack'></i>
+                                                500 Points
+                                            </div>
+                                            <button class="redeem-btn">Redeem Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Shopping Voucher Card -->
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/shopping-voucher.jpg" alt="Shopping Voucher">
+                                        <div class="reward-category">Shopping Card</div>
+                                    </div>
+                                    <div class="reward-info">
+                                        <h4>$50 Shopping Card</h4>
+                                        <p>Redeem at any partner retail stores</p>
+                                        <div class="reward-footer">
+                                            <div class="points-cost">
+                                                <i class='bx bxs-coin-stack'></i>
+                                                750 Points
+                                            </div>
+                                            <button class="redeem-btn">Redeem Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Exclusive Merchandise Card -->
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/merchandise.jpg" alt="Exclusive Merchandise">
+                                        <div class="reward-category">Exclusive Merchandise</div>
+                                    </div>
+                                    <div class="reward-info">
+                                        <h4>Limited Edition T-Shirt</h4>
+                                        <p>Show your support with our exclusive donor merchandise</p>
+                                        <div class="reward-footer">
+                                            <div class="points-cost">
+                                                <i class='bx bxs-coin-stack'></i>
+                                                300 Points
+                                            </div>
+                                            <button class="redeem-btn">Redeem Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+            const userAuth = JSON.parse(localStorage.getItem('user_auth') || '{}');
+            if (!token || !userAuth.id) return window.location.href = 'signin.html';
+
+            // Handle avatar upload
+            const avatarInput = document.getElementById('avatarInput');
+            if (avatarInput) {
+                avatarInput.addEventListener('change', async function(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    // Validate file type
+                    if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
+                        alert('Please select a JPEG or PNG image');
+                        return;
+                    }
+
+                    // Validate file size (10MB = 10 * 1024 * 1024 bytes)
+                    if (file.size > 10 * 1024 * 1024) {
+                        alert('Image size should be less than 10MB');
+                        return;
+                    }
+
+                    try {
+                        // Create FormData object
+                        const formData = new FormData();
+                        formData.append('avatar', file);
+
+                        // Check if server is available first
+                        try {
+                            const serverCheck = await fetch('http://localhost:3001/api/health');
+                            if (!serverCheck.ok) {
+                                throw new Error('Server is not responding');
+                            }
+                        } catch (error) {
+                            throw new Error('Cannot connect to server. Please make sure the server is running at http://localhost:3001');
+                        }
+
+                        // Upload the image
+                        const uploadResponse = await fetch(`http://localhost:3001/api/user/${userAuth.id}/avatar`, {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            },
+                            body: formData
+                        });
+
+                        // Check if response is JSON
+                        const contentType = uploadResponse.headers.get('content-type');
+                        if (!contentType || !contentType.includes('application/json')) {
+                            throw new Error('Server error: Expected JSON response but got HTML. Please check if the server is running correctly.');
+                        }
+
+                        if (!uploadResponse.ok) {
+                            const errorData = await uploadResponse.json();
+                            throw new Error(errorData.message || 'Failed to upload avatar');
+                        }
+
+                        const result = await uploadResponse.json();
+                        
+                        if (!result || !result.avatar_url) {
+                            throw new Error('Invalid response from server: Missing avatar URL');
+                        }
+
+                        // Update the avatar in the UI
+                        const avatarUrl = result.avatar_url;
+                        
+                        // Update all profile pictures in the current page
+                        document.getElementById('profileAvatar').src = avatarUrl;
+                        document.getElementById('profileNavAvatar').src = avatarUrl;
+                        
+                        // Update the avatar in localStorage
+                        const updatedUser = { ...userAuth, avatar_url: avatarUrl };
+                        localStorage.setItem('user_auth', JSON.stringify(updatedUser));
+
+                        // Update the avatar in other open pages using localStorage event
+                        localStorage.setItem('avatar_updated', JSON.stringify({
+                            timestamp: new Date().getTime(),
+                            avatar_url: avatarUrl
+                        }));
+
+                        alert('Profile picture updated successfully!');
+                    } catch (error) {
+                        console.error('Error uploading avatar:', error);
+                        // Show a more user-friendly error message
+                        if (error.message.includes('Cannot connect to server')) {
+                            alert('Cannot connect to the server. Please ensure that:\n\n1. The server is running\n2. The server is accessible at http://localhost:3001\n\nIf the problem persists, please contact support.');
+                        } else {
+                            alert(error.message || 'Failed to upload profile picture. Please try again.');
+                        }
+                    }
+                });
+            }
+
+            // Listen for avatar updates from other pages
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'avatar_updated') {
+                    const update = JSON.parse(e.newValue);
+                    if (update && update.avatar_url) {
+                        document.getElementById('profileAvatar').src = update.avatar_url;
+                        document.getElementById('profileNavAvatar').src = update.avatar_url;
+                    }
+                }
+            });
+
+            try {
+                const res = await fetch(`http://localhost:3001/api/user/${userAuth.id}`, {
+                    headers: { Authorization: 'Bearer ' + token }
+                });
+                const user = await res.json();
+                document.getElementById('profileNavAvatar').src = user.avatar_url || 'assets/img/unknown_profile.png';
+                document.getElementById('navProfileName').textContent = user.name;
+                document.getElementById('profileAvatar').src = user.avatar_url || 'assets/img/unknown_profile.png';
+                document.getElementById('profileName').textContent = user.name;
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('bloodTypeTag').innerHTML = `<i class='bx bxs-droplet'></i> Blood Type ${user.blood_type}`;
+                // Update info-column donation count and rank
+                const infoDonation = document.getElementById('infoDonationCount');
+                infoDonation.innerHTML = `<i class='bx bxs-heart-circle'></i> ${user.donationCount ?? 0} Donations`;
+                const infoRankIcon = document.getElementById('infoRankIcon');
+                const infoRankText = document.getElementById('infoRankText');
+                const key = (user.donor_level ?? 'Iron Donor').split(' ')[0].toLowerCase();
+                const infoFile = rankMap[key] || rankMap['iron'];
+                infoRankIcon.src = `assets/img/RANK/${infoFile}`;
+                infoRankIcon.alt = user.donor_level || 'Iron Donor';
+                infoRankText.textContent = (user.donor_level || 'Iron Donor').split(' ')[0];
+                // Apply donor-level theme to stats
+                const statsCol = document.getElementById('statsColumn');
+                if (user.donor_level) statsCol.classList.add('theme-' + user.donor_level.toLowerCase());
+
+                // Update stats dynamically
+                const stats = document.querySelectorAll('#statsColumn .stat-box .stat-value');
+                stats[0].textContent = user.lifePoints ?? 0;
+                stats[1].textContent = user.donationCount ?? 0;
+                // Map donor levels to icon filenames
+                const rankMap = {
+                  iron: 'iron.png',
+                  bronze: 'bronze.png',
+                  silver: 'silver.png',
+                  gold: 'gold-removebg-preview.png',
+                  platinum: 'plat.png',
+                  diamond: 'diamon.png'
+                };
+                const rankIcon = document.getElementById('rankIcon');
+                const levelKey = (user.donor_level ?? 'Iron Donor').split(' ')[0].toLowerCase();
+                const fileName = rankMap[levelKey] || rankMap['iron'];
+                rankIcon.src = `assets/img/RANK/${fileName}`;
+                rankIcon.alt = user.donor_level || 'Iron Donor';
+
+                // Fetch donation history
+                try {
+                    const res2 = await fetch('http://localhost:3001/api/donation/my', {
+                        headers: { Authorization: 'Bearer ' + token }
+                    });
+                    const donations = await res2.json();
+                    const wrapper = document.querySelector('#donation-history .timeline-wrapper');
+                    wrapper.innerHTML = '';
+                    donations.forEach(d => {
+                        const entry = document.createElement('div');
+                        entry.className = 'timeline-entry';
+                        entry.innerHTML = `
+                            <div class="timeline-date">
+                                <div class="date-badge">
+                                    <span class="month">${new Date(d.date).toLocaleString('default',{month:'short'})}</span>
+                                    <span class="day">${new Date(d.date).getDate()}</span>
+                                    <span class="year">${new Date(d.date).getFullYear()}</span>
+                                </div>
+                                <span class="time">${new Date(d.date).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="donation-info">
+                                    <div class="donation-type">
+                                        <i class='bx bx-donate-blood'></i>
+                                        <span>${d.volume} ml</span>
+                                    </div>
+                                    <div class="points-badge">
+                                        <i class='bx bxs-coin-stack'></i> +${d.points_awarded} LP
+                                    </div>
+                                </div>
+                            </div>`;
+                        wrapper.appendChild(entry);
+                    });
+                    // Update overview stats based on donation data
+                    const overviewCards = document.querySelectorAll('#overview .activity-card');
+                    const totalDonations = donations.length;
+                    const totalVolumeMl = donations.reduce((sum, d) => sum + d.volume, 0);
+                    const totalVolumeL = (totalVolumeMl / 1000).toFixed(1);
+                    if (overviewCards[0]) overviewCards[0].querySelector('h4').textContent = '0%';
+                    if (overviewCards[1]) overviewCards[1].querySelector('h4').textContent = totalVolumeL;
+                } catch(e) { console.error('Donation history error', e); }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+        function handleLogout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user_auth');
+            window.location.href = 'signin.html';
+        }
+        function toggleDropdown() {
+            document.getElementById('dropdownMenu').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
