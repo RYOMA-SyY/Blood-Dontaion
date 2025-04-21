@@ -1,59 +1,88 @@
 const AUTH_KEY = 'user_auth';
 
-const AuthService = {
+class AuthService {
     // Mock user data for testing
-    mockUser: {
+    mockUser = {
         name: "John Doe",
         email: "test@test.com",
         password: "test123", // In real app, never store passwords like this!
         profilePicture: "assets/img/unknown_profile.png",
         lifePoints: 750
-    },
+    };
 
     // Check if user is logged in
-    isLoggedIn() {
-        return !!localStorage.getItem(AUTH_KEY);
-    },
+    static isLoggedIn() {
+        return !!localStorage.getItem('token');
+    }
 
     // Get current user object
-    getCurrentUser() {
-        const userData = localStorage.getItem(AUTH_KEY);
-        return userData ? JSON.parse(userData) : null;
-    },
+    static getUser() {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+    }
 
     // Mock login - just for frontend testing
-    login(email, password) {
-        // For testing: accept any email/password combination
-        const userData = { name: this.mockUser.name, profilePicture: this.mockUser.profilePicture };
-        localStorage.setItem(AUTH_KEY, JSON.stringify(userData));
-        return true;
-    },
+    static async login(credentials) {
+        try {
+            const response = await fetch(`${config.apiUrl}/api/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     // Mock register - just for frontend testing
-    register(userData) {
-        const data = { name: userData.name, profilePicture: this.mockUser.profilePicture };
-        localStorage.setItem(AUTH_KEY, JSON.stringify(data));
-        return true;
-    },
+    static async register(userData) {
+        try {
+            const response = await fetch(`${config.apiUrl}/api/auth/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            });
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     // Logout
-    logout() {
-        localStorage.removeItem(AUTH_KEY);
+    static logout() {
         localStorage.removeItem('token');
-    },
+        localStorage.removeItem('user');
+    }
 
     // Get user name
-    getUserName() {
-        const user = this.getCurrentUser();
+    static getUserName() {
+        const user = this.getUser();
         return user ? user.name : '';
-    },
+    }
 
     // Get user avatar URL
-    getUserAvatar() {
-        const user = this.getCurrentUser();
-        return user && user.profilePicture ? user.profilePicture : 'assets/img/unknown_profile.png';
+    static getUserAvatar() {
+        const user = this.getUser();
+        return user && user.avatar_url ? user.avatar_url : 'assets/img/unknown_profile.png';
     }
-};
+
+    static getToken() {
+        return localStorage.getItem('token');
+    }
+}
 
 // Export for use in other files
 window.AuthService = AuthService;
