@@ -8,11 +8,22 @@ const path = require('path');
 const db = require('./db');
 
 const app = express();
+
+// CORS configuration
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://ryoma-syy.github.io'] 
+    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
 // Security middlewares
 app.use(helmet());
 app.use(morgan('combined'));
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Serve static files from uploads directory
@@ -20,6 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Health check
 app.get('/healthz', (req, res) => res.json({ status: 'OK' }));
+
 // Import routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/donation', require('./routes/donation'));
