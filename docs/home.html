@@ -525,57 +525,114 @@
         }
 
         .footer-section {
-            padding: 0;
+            padding: 4rem 0 0 0;
+            width: 100%;
+            background-color: #0D0D0D;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            #video-signup-section .container-fluid {
-                padding: 1rem;
-            }
-            
-            #video-signup-section .signup-container {
-                text-align: center;
-                margin-bottom: 2rem;
-                order: 2;
-            }
-            
-            #video-signup-section .video-container {
-                order: 1;
-                padding-left: 0;
-                margin-bottom: 2rem;
-            }
-            
-            .button-group {
+        .footer-section .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section .row {
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section .col-md-4,
+        .footer-section .col-md-2 {
+            padding: 0 0.5rem;
+        }
+
+        .footer-section h4 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links li {
+            margin-bottom: 0;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            margin-top: 0;
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+
+        .footer-bottom .row {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .footer-bottom .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: white;
+        }
+
+        @media (max-width: 991.98px) {
+            .footer-bottom .row {
                 align-items: center;
             }
-            
-            #video-signup-section .signup-container h2 {
-                font-size: 2.5rem;
-            }
-            
-            .signup-text {
-                font-size: 1.1rem;
-            }
-            
-            #video-signup-section .btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-        }
 
-        /* Extra small devices */
-        @media (max-width: 576px) {
-            #video-signup-section .signup-container h2 {
-                font-size: 2rem;
-            }
-            
-            .signup-text {
-                font-size: 1rem;
-            }
-            
-            #video-signup-section .btn {
-                min-width: 180px;
+            .footer-bottom-links {
+                justify-content: center;
+                flex-wrap: wrap;
             }
         }
 
@@ -1647,7 +1704,7 @@
                     <div class="footer-bottom">
                         <div class="row">
                             <div class="col-md-6">
-                                <p class="copyright"> 2024 REDHope. All rights reserved.</p>
+                                <p class="copyright"> 2024 THE BOTTOM FRAGS. All rights reserved.</p>
                             </div>
                             <div class="col-md-6">
                                 <ul class="footer-bottom-links">
