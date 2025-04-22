@@ -27,7 +27,7 @@
                 <img src="assets/img/logo.png" alt="Logo">
                 <span class="navbar-brand">THE BOTTOM FRAGS</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Toggle navigation menu">
                 <i class='bx bx-menu'></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -42,9 +42,9 @@
                         <a class="nav-link" href="#donate">Donate</a>
                     </li>
                     <li class="nav-item profile-dropdown">
-                        <button class="profile-button" onclick="toggleDropdown()">
+                        <button class="profile-button" onclick="toggleDropdown()" title="Toggle profile menu">
                             <img id="profileNavAvatar" src="assets/img/unknown_profile.png" alt="Profile" class="profile-picture">
-                            <span id="navProfileName" class="profile-name">User</span>
+                            <span id="navProfileName">User</span>
                             <i class='bx bx-chevron-down'></i>
                         </button>
                         <div class="dropdown-menu" id="dropdownMenu">
@@ -70,7 +70,7 @@
                     <img id="profileAvatar" src="assets/img/unknown_profile.png" alt="Profile Picture">
                     <div class="avatar-upload">
                         <input type="file" id="avatarInput" accept="image/png,image/jpeg" style="display: none;">
-                        <button class="edit-avatar" onclick="document.getElementById('avatarInput').click()">
+                        <button class="edit-avatar" onclick="document.getElementById('avatarInput').click()" title="Change profile picture">
                             <i class='bx bxs-camera'></i>
                         </button>
                     </div>
@@ -143,20 +143,17 @@
             <!-- Left Side Tabs -->
             <div class="tabs-sidebar">
                 <ul class="nav flex-column profile-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#overview">Overview</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#overview" role="tab">Overview</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#activity">Activity</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#activity" role="tab">Activity</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#programs">Programs</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#rewards" role="tab">Rewards</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#shop">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#donation-history">Donation History</a>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="tab" href="#donation-history" role="tab">Donation History</a>
                     </li>
                 </ul>
             </div>
@@ -261,7 +258,119 @@
                     </div>
                 </div>
 
-                <!-- Donation History Tab -->
+                <!-- Activity Tab Content -->
+                <div class="tab-pane fade" id="activity">
+                    <!-- ... existing activity content ... -->
+                </div>
+
+                <!-- Rewards Tab Content -->
+                <div class="tab-pane fade" id="rewards">
+                    <div class="rewards-container">
+                        <!-- Points Summary Section -->
+                        <div class="points-section">
+                            <div class="points-summary-card">
+                                <div class="points-icon">
+                                    <i class='bx bxs-coin-stack'></i>
+                                </div>
+                                <h5>Available LifePoints</h5>
+                                <div class="current-points" id="rewardPoints">0</div>
+                                <p class="points-info">Use your LifePoints to redeem exclusive rewards!</p>
+                            </div>
+                        </div>
+
+                        <!-- Rewards Filter and Grid Section -->
+                        <div class="rewards-content">
+                            <div class="rewards-filter">
+                                <div class="filter-header">
+                                    <h5>Available Rewards</h5>
+                                    <div class="filter-options">
+                                        <select class="form-select" aria-label="Filter rewards" title="Filter rewards">
+                                            <option value="all">All Rewards</option>
+                                            <option value="available">Available Now</option>
+                                            <option value="upcoming">Coming Soon</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rewards Grid -->
+                            <div class="rewards-grid">
+                                <!-- Example Reward Cards -->
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/rewards/tshirt.jpg" alt="Limited Edition T-Shirt">
+                                        <div class="reward-badge">Most Popular</div>
+                                    </div>
+                                    <div class="reward-content">
+                                        <h3>Limited Edition T-Shirt</h3>
+                                        <p>Exclusive blood donor t-shirt with custom design</p>
+                                        <div class="reward-points">
+                                            <i class='bx bxs-coin'></i>
+                                            <span>500 Points</span>
+                                        </div>
+                                        <button class="btn-redeem" onclick="redeemReward(1)">Redeem Reward</button>
+                                    </div>
+                                </div>
+
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/rewards/coffee.jpg" alt="Coffee Voucher">
+                                    </div>
+                                    <div class="reward-content">
+                                        <h3>Coffee Voucher</h3>
+                                        <p>Free coffee voucher at participating cafes</p>
+                                        <div class="reward-points">
+                                            <i class='bx bxs-coin'></i>
+                                            <span>200 Points</span>
+                                        </div>
+                                        <button class="btn-redeem" onclick="redeemReward(2)">Redeem Reward</button>
+                                    </div>
+                                </div>
+
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/rewards/movie.jpg" alt="Movie Tickets">
+                                        <div class="reward-badge">Limited Time</div>
+                                    </div>
+                                    <div class="reward-content">
+                                        <h3>Movie Tickets</h3>
+                                        <p>Two movie tickets at selected theaters</p>
+                                        <div class="reward-points">
+                                            <i class='bx bxs-coin'></i>
+                                            <span>800 Points</span>
+                                        </div>
+                                        <button class="btn-redeem" onclick="redeemReward(3)">Redeem Reward</button>
+                                    </div>
+                                </div>
+
+                                <div class="reward-card">
+                                    <div class="reward-image">
+                                        <img src="assets/img/rewards/gift-card.jpg" alt="Gift Card">
+                                    </div>
+                                    <div class="reward-content">
+                                        <h3>$50 Gift Card</h3>
+                                        <p>Shopping voucher for selected stores</p>
+                                        <div class="reward-points">
+                                            <i class='bx bxs-coin'></i>
+                                            <span>1000 Points</span>
+                                        </div>
+                                        <button class="btn-redeem" onclick="redeemReward(4)">Redeem Reward</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Redemption History -->
+                            <div class="redemption-history-card">
+                                <h5>Redemption History</h5>
+                                <div class="history-list" id="redemptionHistory">
+                                    <!-- History items will be loaded dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donation History Tab Content -->
                 <div class="tab-pane fade" id="donation-history">
                     <div class="donation-history-container">
                         <!-- Header with Export Option -->
@@ -282,314 +391,638 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Achievements Tab -->
-                <div class="tab-pane fade" id="programs">
-                    <div class="achievements-grid">
-                        <div class="achievement-card">
-                            <div class="achievement-icon">
-                                <i class='bx bxs-medal'></i>
-                            </div>
-                            <h4>First Time Donor</h4>
-                            <p>Completed your first blood donation</p>
-                            <div class="achievement-date">Earned Mar 15, 2024</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Shop Tab -->
-                <div class="tab-pane fade" id="shop">
-                    <div class="shop-container">  <!-- New container div with black background -->
-                        <div class="rewards-section">
-                            <div class="current-points">
-                                <h3>Your LifePoints Balance</h3>
-                                <div class="points-display">
-                                    <i class='bx bxs-coin-stack'></i>
-                                    750
-                                </div>
-                                <p class="points-subtitle">Keep donating to earn more points!</p>
-                            </div>
-                            
-                            <div class="rewards-categories">
-                                <button class="category-btn active">All Rewards</button>
-                                <button class="category-btn">Health & Wellness</button>
-                                <button class="category-btn">Shopping Vouchers</button>
-                                <button class="category-btn">Exclusive Merchandise</button>
-                            </div>
-
-                            <div class="rewards-grid">
-                                <!-- Health Checkup Reward Card -->
-                                <div class="reward-card">
-                                    <div class="reward-image">
-                                        <img src="assets/img/health-checkup.jpg" alt="Health Checkup">
-                                        <div class="reward-category">Health & Wellness</div>
-                                    </div>
-                                    <div class="reward-info">
-                                        <h4>Complete Health Checkup</h4>
-                                        <p>Comprehensive health screening at partner hospitals</p>
-                                        <div class="reward-footer">
-                                            <div class="points-cost">
-                                                <i class='bx bxs-coin-stack'></i>
-                                                500 Points
-                                            </div>
-                                            <button class="redeem-btn">Redeem Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Shopping Voucher Card -->
-                                <div class="reward-card">
-                                    <div class="reward-image">
-                                        <img src="assets/img/shopping-voucher.jpg" alt="Shopping Voucher">
-                                        <div class="reward-category">Shopping Card</div>
-                                    </div>
-                                    <div class="reward-info">
-                                        <h4>$50 Shopping Card</h4>
-                                        <p>Redeem at any partner retail stores</p>
-                                        <div class="reward-footer">
-                                            <div class="points-cost">
-                                                <i class='bx bxs-coin-stack'></i>
-                                                750 Points
-                                            </div>
-                                            <button class="redeem-btn">Redeem Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Exclusive Merchandise Card -->
-                                <div class="reward-card">
-                                    <div class="reward-image">
-                                        <img src="assets/img/merchandise.jpg" alt="Exclusive Merchandise">
-                                        <div class="reward-category">Exclusive Merchandise</div>
-                                    </div>
-                                    <div class="reward-info">
-                                        <h4>Limited Edition T-Shirt</h4>
-                                        <p>Show your support with our exclusive donor merchandise</p>
-                                        <div class="reward-footer">
-                                            <div class="points-cost">
-                                                <i class='bx bxs-coin-stack'></i>
-                                                300 Points
-                                            </div>
-                                            <button class="redeem-btn">Redeem Now</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="auth.js"></script>
+    <style>
+        /* Override the body padding */
+        body {
+            padding-top: 0 !important;
+            min-height: 100vh;
+            background: linear-gradient(90deg, #0D0D0D, #FC3454);
+        }
+
+        /* Adjust navbar position */
+        .navbar {
+            position: absolute !important;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Adjust profile header position */
+        .profile-header {
+            padding-top: 80px; /* Add some space for the navbar */
+        }
+
+        .points-display {
+            font-size: 3rem;
+            color: #dc3545;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .rewards-container {
+            padding: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .points-section {
+            margin-bottom: 2rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .points-summary-card {
+            background: linear-gradient(135deg, #1E0B1C, #2D0F29);
+            border: 1px solid rgba(252, 52, 84, 0.15);
+            box-shadow: 0 4px 15px rgba(252, 52, 84, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .points-icon {
+            font-size: 2.5rem;
+            color: #FC3454;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .points-icon i {
+            background: linear-gradient(135deg, #FF4D6D, #FC3454);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(252, 52, 84, 0.3));
+        }
+
+        .current-points {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin: 0.5rem 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #FFFFFF, #E6E6E6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .points-info {
+            color: #FC3454;
+            opacity: 0.9;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .rewards-content {
+            background: linear-gradient(180deg, #1E0B1C 0%, #150814 100%);
+            border: 1px solid rgba(252, 52, 84, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .rewards-filter {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .filter-header h5 {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, #FFFFFF, #FC3454);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-options .form-select {
+            background: linear-gradient(135deg, #2D0F29, #1E0B1C);
+            border: 1px solid rgba(252, 52, 84, 0.2);
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            padding: 0.4rem 2rem 0.4rem 0.8rem;
+            border-radius: 8px;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .filter-options .form-select:focus {
+            border-color: #FC3454;
+            box-shadow: 0 0 0 2px rgba(252, 52, 84, 0.2);
+        }
+
+        .filter-options .form-select option {
+            background: #1E0B1C;
+            color: #FFFFFF;
+        }
+
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .reward-card {
+            background: linear-gradient(135deg, #2D0F29, #1E0B1C);
+            border: 1px solid rgba(252, 52, 84, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(252, 52, 84, 0.3);
+            box-shadow: 0 8px 24px rgba(252, 52, 84, 0.15);
+        }
+
+        .reward-image {
+            position: relative;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        .reward-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reward-badge {
+            position: absolute;
+            top: 0.7rem;
+            right: 0.7rem;
+            background: linear-gradient(135deg, #FF4D6D, #FC3454);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .reward-content {
+            padding: 1rem;
+            color: white;
+        }
+
+        .reward-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: white;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFFFFF, #EEEEEE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .reward-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.8rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            height: 2.6em;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .reward-points {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #FC3454;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .reward-points i {
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #FF4D6D, #FC3454);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-redeem {
+            width: 100%;
+            background: linear-gradient(135deg, #FF4D6D, #FC3454);
+            color: white;
+            border: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            font-family: 'Manrope', sans-serif;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-redeem:hover {
+            background: linear-gradient(135deg, #FC3454, #D62B45);
+            box-shadow: 0 4px 8px rgba(252, 52, 84, 0.3);
+        }
+
+        .btn-redeem:active {
+            background: linear-gradient(135deg, #D62B45, #FC3454);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .redemption-history-card {
+            background: linear-gradient(135deg, #2D0F29, #1E0B1C);
+            border: 1px solid rgba(252, 52, 84, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .redemption-history-card h5 {
+            color: white;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFFFFF, #EEEEEE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .history-list {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .history-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .history-list::-webkit-scrollbar-track {
+            background: rgba(252, 52, 84, 0.05);
+        }
+
+        .history-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF4D6D, #FC3454);
+            border-radius: 3px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid rgba(252, 52, 84, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-item:hover {
+            background: rgba(252, 52, 84, 0.05);
+        }
+
+        /* Mobile Considerations */
+        @media (max-width: 768px) {
+            .rewards-container {
+                padding: 1rem;
+            }
+
+            .points-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .rewards-content {
+                padding: 1rem;
+            }
+
+            .rewards-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 1rem;
+            }
+
+            .reward-image {
+                height: 120px;
+            }
+
+            .reward-content {
+                padding: 0.8rem;
+            }
+
+            .current-points {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .rewards-container {
+                padding: 0.5rem;
+            }
+
+            .filter-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .filter-options {
+                width: 100%;
+            }
+
+            .filter-options .form-select {
+                width: 100%;
+            }
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            .reward-card,
+            .btn-redeem {
+                transition: none;
+            }
+        }
+
+        /* High Contrast Mode */
+        @media (prefers-contrast: more) {
+            .points-summary-card,
+            .rewards-content,
+            .reward-card,
+            .redemption-history-card {
+                background: #0D0D0D;
+                border: 2px solid #FC3454;
+            }
+
+            .current-points,
+            .filter-header h5,
+            .reward-content h3,
+            .redemption-history-card h5 {
+                background: none;
+                -webkit-text-fill-color: #FFFFFF;
+                color: #FFFFFF;
+            }
+
+            .btn-redeem {
+                background: #FC3454;
+            }
+        }
+
+        /* Dark Mode Enhancement */
+        @media (prefers-color-scheme: dark) {
+            .points-summary-card,
+            .rewards-content,
+            .reward-card,
+            .redemption-history-card {
+                box-shadow: 0 4px 20px rgba(252, 52, 84, 0.15);
+            }
+        }
+
+        /* Status Colors for Rewards */
+        .reward-status-available {
+            color: #4CAF50;
+        }
+
+        .reward-status-limited {
+            color: #FFC107;
+        }
+
+        .reward-status-sold-out {
+            color: #9E9E9E;
+        }
+
+        /* Hover Effects Enhancement */
+        .reward-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(252, 52, 84, 0.1),
+                rgba(255, 77, 109, 0.05)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .reward-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Animation for Points */
+        @keyframes pointsPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .current-points {
+            animation: pointsPulse 2s infinite ease-in-out;
+        }
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
-            const token = localStorage.getItem('token');
-            const userAuth = JSON.parse(localStorage.getItem('user_auth') || '{}');
-            if (!token || !userAuth.id) return window.location.href = 'signin.html';
-
-            // Handle avatar upload
-            const avatarInput = document.getElementById('avatarInput');
-            if (avatarInput) {
-                avatarInput.addEventListener('change', async function(e) {
-                    const file = e.target.files[0];
-                    if (!file) return;
-
-                    // Validate file type
-                    if (!file.type.match('image/jpeg') && !file.type.match('image/png')) {
-                        alert('Please select a JPEG or PNG image');
+            try {
+                if (!AuthService.isLoggedIn()) {
+                    window.location.href = 'signin.html';
                         return;
                     }
 
-                    // Validate file size (10MB = 10 * 1024 * 1024 bytes)
-                    if (file.size > 10 * 1024 * 1024) {
-                        alert('Image size should be less than 10MB');
+                const user = AuthService.getUser();
+                if (!user) {
+                    window.location.href = 'signin.html';
                         return;
                     }
 
-                    try {
-                        // Create FormData object
-                        const formData = new FormData();
-                        formData.append('avatar', file);
+                // Update profile elements
+                const elements = {
+                    profileName: document.getElementById('profileName'),
+                    navProfileName: document.getElementById('navProfileName'),
+                    profileEmail: document.getElementById('profileEmail'),
+                    profileCIN: document.getElementById('profileCIN'),
+                    profileBloodType: document.getElementById('profileBloodType'),
+                    profilePoints: document.getElementById('profilePoints'),
+                    bloodTypeTag: document.getElementById('bloodTypeTag'),
+                    donorLevelTag: document.getElementById('donorLevelTag'),
+                    profileAvatar: document.getElementById('profileAvatar'),
+                    profileNavAvatar: document.getElementById('profileNavAvatar')
+                };
 
-                        // Check if server is available first
+                // Update profile information with fallbacks
+                if (elements.profileName) elements.profileName.textContent = user.name || 'User';
+                if (elements.navProfileName) elements.navProfileName.textContent = user.name || 'User';
+                if (elements.profileEmail) elements.profileEmail.textContent = user.email || '';
+                if (elements.profileCIN) elements.profileCIN.textContent = user.cin || '';
+                if (elements.profileBloodType) elements.profileBloodType.textContent = user.blood_type || '';
+                if (elements.profilePoints) elements.profilePoints.textContent = user.points || '0';
+                
+                // Update blood type tag with icon
+                if (elements.bloodTypeTag) {
+                    elements.bloodTypeTag.innerHTML = `<i class='bx bxs-droplet'></i> ${user.blood_type || ''}`;
+                }
+
+                // Update donor level tag
+                if (elements.donorLevelTag) {
+                    elements.donorLevelTag.innerHTML = calculateDonorLevel(user.points || 0);
+                }
+
+                // Update avatar images
+                const avatarUrl = user.avatar_url || 'assets/img/unknown_profile.png';
+                if (elements.profileAvatar) elements.profileAvatar.src = avatarUrl;
+                if (elements.profileNavAvatar) elements.profileNavAvatar.src = avatarUrl;
+
+                // Update rank information
+                updateRankDisplay(user.points || 0);
+
+                // Handle profile picture upload
+                const avatarInput = document.getElementById('avatarInput');
+                if (avatarInput) {
+                    avatarInput.addEventListener('change', async function(e) {
                         try {
-                            const serverCheck = await fetch('http://localhost:3001/api/health');
-                            if (!serverCheck.ok) {
-                                throw new Error('Server is not responding');
+                            const file = e.target.files[0];
+                            if (file) {
+                                const reader = new FileReader();
+                                reader.onload = async function(e) {
+                                    try {
+                                        const avatarUrl = e.target.result;
+                                        if (elements.profileAvatar) elements.profileAvatar.src = avatarUrl;
+                                        if (elements.profileNavAvatar) elements.profileNavAvatar.src = avatarUrl;
+                                        await AuthService.updateUserProfile({ avatar_url: avatarUrl });
+                                    } catch (error) {
+                                        console.error('Error updating avatar:', error);
+                                    }
+                                };
+                                reader.readAsDataURL(file);
                             }
                         } catch (error) {
-                            throw new Error('Cannot connect to server. Please make sure the server is running at http://localhost:3001');
+                            console.error('Error handling file upload:', error);
                         }
-
-                        // Upload the image
-                        const uploadResponse = await fetch(`http://localhost:3001/api/user/${userAuth.id}/avatar`, {
-                            method: 'POST',
-                            headers: {
-                                'Authorization': `Bearer ${token}`
-                            },
-                            body: formData
-                        });
-
-                        // Check if response is JSON
-                        const contentType = uploadResponse.headers.get('content-type');
-                        if (!contentType || !contentType.includes('application/json')) {
-                            throw new Error('Server error: Expected JSON response but got HTML. Please check if the server is running correctly.');
-                        }
-
-                        if (!uploadResponse.ok) {
-                            const errorData = await uploadResponse.json();
-                            throw new Error(errorData.message || 'Failed to upload avatar');
-                        }
-
-                        const result = await uploadResponse.json();
-                        
-                        if (!result || !result.avatar_url) {
-                            throw new Error('Invalid response from server: Missing avatar URL');
-                        }
-
-                        // Update the avatar in the UI
-                        const avatarUrl = result.avatar_url;
-                        
-                        // Update all profile pictures in the current page
-                        document.getElementById('profileAvatar').src = avatarUrl;
-                        document.getElementById('profileNavAvatar').src = avatarUrl;
-                        
-                        // Update the avatar in localStorage
-                        const updatedUser = { ...userAuth, avatar_url: avatarUrl };
-                        localStorage.setItem('user_auth', JSON.stringify(updatedUser));
-
-                        // Update the avatar in other open pages using localStorage event
-                        localStorage.setItem('avatar_updated', JSON.stringify({
-                            timestamp: new Date().getTime(),
-                            avatar_url: avatarUrl
-                        }));
-
-                        alert('Profile picture updated successfully!');
-                    } catch (error) {
-                        console.error('Error uploading avatar:', error);
-                        // Show a more user-friendly error message
-                        if (error.message.includes('Cannot connect to server')) {
-                            alert('Cannot connect to the server. Please ensure that:\n\n1. The server is running\n2. The server is accessible at http://localhost:3001\n\nIf the problem persists, please contact support.');
-                        } else {
-                            alert(error.message || 'Failed to upload profile picture. Please try again.');
-                        }
-                    }
-                });
-            }
-
-            // Listen for avatar updates from other pages
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'avatar_updated') {
-                    const update = JSON.parse(e.newValue);
-                    if (update && update.avatar_url) {
-                        document.getElementById('profileAvatar').src = update.avatar_url;
-                        document.getElementById('profileNavAvatar').src = update.avatar_url;
-                    }
+                    });
                 }
-            });
 
-            try {
-                const res = await fetch(`http://localhost:3001/api/user/${userAuth.id}`, {
-                    headers: { Authorization: 'Bearer ' + token }
-                });
-                const user = await res.json();
-                document.getElementById('profileNavAvatar').src = user.avatar_url || 'assets/img/unknown_profile.png';
-                document.getElementById('navProfileName').textContent = user.name;
-                document.getElementById('profileAvatar').src = user.avatar_url || 'assets/img/unknown_profile.png';
-                document.getElementById('profileName').textContent = user.name;
-                document.getElementById('profileEmail').textContent = user.email;
-                document.getElementById('bloodTypeTag').innerHTML = `<i class='bx bxs-droplet'></i> Blood Type ${user.blood_type}`;
-                // Update info-column donation count and rank
-                const infoDonation = document.getElementById('infoDonationCount');
-                infoDonation.innerHTML = `<i class='bx bxs-heart-circle'></i> ${user.donationCount ?? 0} Donations`;
-                const infoRankIcon = document.getElementById('infoRankIcon');
-                const infoRankText = document.getElementById('infoRankText');
-                const key = (user.donor_level ?? 'Iron Donor').split(' ')[0].toLowerCase();
-                const infoFile = rankMap[key] || rankMap['iron'];
-                infoRankIcon.src = `assets/img/RANK/${infoFile}`;
-                infoRankIcon.alt = user.donor_level || 'Iron Donor';
-                infoRankText.textContent = (user.donor_level || 'Iron Donor').split(' ')[0];
-                // Apply donor-level theme to stats
-                const statsCol = document.getElementById('statsColumn');
-                if (user.donor_level) statsCol.classList.add('theme-' + user.donor_level.toLowerCase());
-
-                // Update stats dynamically
-                const stats = document.querySelectorAll('#statsColumn .stat-box .stat-value');
-                stats[0].textContent = user.lifePoints ?? 0;
-                stats[1].textContent = user.donationCount ?? 0;
-                // Map donor levels to icon filenames
-                const rankMap = {
-                  iron: 'iron.png',
-                  bronze: 'bronze.png',
-                  silver: 'silver.png',
-                  gold: 'gold-removebg-preview.png',
-                  platinum: 'plat.png',
-                  diamond: 'diamon.png'
-                };
-                const rankIcon = document.getElementById('rankIcon');
-                const levelKey = (user.donor_level ?? 'Iron Donor').split(' ')[0].toLowerCase();
-                const fileName = rankMap[levelKey] || rankMap['iron'];
-                rankIcon.src = `assets/img/RANK/${fileName}`;
-                rankIcon.alt = user.donor_level || 'Iron Donor';
-
-                // Fetch donation history
-                try {
-                    const res2 = await fetch('http://localhost:3001/api/donation/my', {
-                        headers: { Authorization: 'Bearer ' + token }
-                    });
-                    const donations = await res2.json();
-                    const wrapper = document.querySelector('#donation-history .timeline-wrapper');
-                    wrapper.innerHTML = '';
-                    donations.forEach(d => {
-                        const entry = document.createElement('div');
-                        entry.className = 'timeline-entry';
-                        entry.innerHTML = `
-                            <div class="timeline-date">
-                                <div class="date-badge">
-                                    <span class="month">${new Date(d.date).toLocaleString('default',{month:'short'})}</span>
-                                    <span class="day">${new Date(d.date).getDate()}</span>
-                                    <span class="year">${new Date(d.date).getFullYear()}</span>
-                                </div>
-                                <span class="time">${new Date(d.date).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span>
-                            </div>
-                            <div class="timeline-content">
-                                <div class="donation-info">
-                                    <div class="donation-type">
-                                        <i class='bx bx-donate-blood'></i>
-                                        <span>${d.volume} ml</span>
-                                    </div>
-                                    <div class="points-badge">
-                                        <i class='bx bxs-coin-stack'></i> +${d.points_awarded} LP
-                                    </div>
-                                </div>
-                            </div>`;
-                        wrapper.appendChild(entry);
-                    });
-                    // Update overview stats based on donation data
-                    const overviewCards = document.querySelectorAll('#overview .activity-card');
-                    const totalDonations = donations.length;
-                    const totalVolumeMl = donations.reduce((sum, d) => sum + d.volume, 0);
-                    const totalVolumeL = (totalVolumeMl / 1000).toFixed(1);
-                    if (overviewCards[0]) overviewCards[0].querySelector('h4').textContent = '0%';
-                    if (overviewCards[1]) overviewCards[1].querySelector('h4').textContent = totalVolumeL;
-                } catch(e) { console.error('Donation history error', e); }
-            } catch (err) {
-                console.error(err);
+            } catch (error) {
+                console.error('Error loading profile:', error);
+                window.location.href = 'signin.html';
             }
         });
-        function handleLogout() {
-            localStorage.removeItem('token');
-            localStorage.removeItem('user_auth');
-            window.location.href = 'signin.html';
+
+        // Calculate donor level based on points
+        function calculateDonorLevel(points) {
+            if (points >= 1000) return '<img src="assets/img/RANK/gold.png" alt="Gold Donor" style="height:24px;" /> Gold';
+            if (points >= 500) return '<img src="assets/img/RANK/silver.png" alt="Silver Donor" style="height:24px;" /> Silver';
+            if (points >= 200) return '<img src="assets/img/RANK/bronze.png" alt="Bronze Donor" style="height:24px;" /> Bronze';
+            return '<img src="assets/img/RANK/iron.png" alt="Iron Donor" style="height:24px;" /> Iron';
         }
+
+        // Update rank display
+        function updateRankDisplay(points) {
+            const rankIcon = document.getElementById('rankIcon');
+            const infoRankIcon = document.getElementById('infoRankIcon');
+            const infoRankText = document.getElementById('infoRankText');
+            
+            let rankSrc, rankText;
+            if (points >= 1000) {
+                rankSrc = 'assets/img/RANK/gold.png';
+                rankText = 'Gold';
+            } else if (points >= 500) {
+                rankSrc = 'assets/img/RANK/silver.png';
+                rankText = 'Silver';
+            } else if (points >= 200) {
+                rankSrc = 'assets/img/RANK/bronze.png';
+                rankText = 'Bronze';
+                        } else {
+                rankSrc = 'assets/img/RANK/iron.png';
+                rankText = 'Iron';
+            }
+
+            if (rankIcon) rankIcon.src = rankSrc;
+            if (infoRankIcon) infoRankIcon.src = rankSrc;
+            if (infoRankText) infoRankText.textContent = rankText;
+        }
+
         function toggleDropdown() {
-            document.getElementById('dropdownMenu').classList.toggle('show');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            dropdownMenu.classList.toggle('show');
         }
+
+        function handleLogout() {
+            AuthService.logout();
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const profileButton = document.querySelector('.profile-button');
+            
+            if (!profileButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+
+        // Add this function to handle reward redemption
+        function redeemReward(rewardId) {
+            const user = AuthService.getUser();
+            if (!user) {
+                alert('Please log in to redeem rewards');
+                return;
+            }
+
+            const userPoints = parseInt(user.points) || 0;
+            const rewardPoints = getRewardPoints(rewardId);
+
+            if (userPoints < rewardPoints) {
+                alert('Not enough points to redeem this reward');
+                return;
+            }
+
+            // Here you would typically make an API call to your backend
+            // For now, we'll just show a success message
+            alert('Reward redeemed successfully!');
+        }
+
+        function getRewardPoints(rewardId) {
+            const rewardPoints = {
+                1: 500,  // T-Shirt
+                2: 200,  // Coffee Voucher
+                3: 800,  // Movie Tickets
+                4: 1000  // Gift Card
+            };
+            return rewardPoints[rewardId] || 0;
+        }
+
+        // Update the points display when the rewards tab is shown
+        document.querySelector('a[href="#rewards"]').addEventListener('click', function() {
+            const user = AuthService.getUser();
+            const pointsDisplay = document.getElementById('rewardPoints');
+            if (pointsDisplay && user) {
+                pointsDisplay.textContent = user.points || '0';
+            }
+        });
     </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="assets/script/config.js"></script>
+    <script src="assets/script/auth.js"></script>
+    <script src="assets/script/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
