@@ -1,164 +1,118 @@
-# THE BOTTOM FRAGS - Blood Donation Platform
+THE BOTTOM FRAGS - Blood Donation Platform
 
-A web-based platform that encourages and tracks blood donations while creating a community of donors.
+Overview:
+A full-stack web application designed to encourage, track, and reward blood donations by building a community of donors through gamification, real-time leaderboards, and personalized profiles.
 
-## Features
+Key Features:
+- User Authentication & Profile Management: Secure sign‑up/log‑in with JWT, profile creation, and avatar support.
+- Donation Tracking: Record donation events, volumes, dates, and calculate LifePoints.
+- Gamified Ranking & LifePoints System: Eight donor ranks (Iron to Immortal) based on accumulated points.
+- Dynamic Leaderboard: View top donors by all-time or event-specific metrics with animated updates.
+- Scheduling Support: Display next eligible donation date per user.
+- Responsive UI: Static frontend pages (home, sign‑in, profile, leaderboard) built with HTML, CSS & JavaScript.
 
-- User authentication and profile management
-- Blood donation tracking
-- Leaderboard system
-- Profile picture management
-- Blood type information
-- Donor levels and points system
+Ranking & Emotional Motivation:
+- Moroccan Ambition: Inspired by Morocco’s spirit of solidarity and resilience, the platform channels collective emotion to foster driven participation and community pride.
 
-## Tech Stack
+LifePoints System Details:
+- Earning Points: Users earn LifePoints proportional to donation volume (e.g., 500ml = 50 points) with frequency bonuses for repeat donors.
+- Tracking & Transparency: Real‑time display of total points, donation history, and countdown to next eligible date with animated feedback.
+- Rewards & Recognition: Points unlock badges, exclusive events, special profile themes, and social leaderboards.
 
-- Frontend: HTML, CSS, JavaScript
+Gamified Donor Ranks Deep Dive:
+- Iron Donor (0–49): Beginning your journey — every drop matters.
+- Bronze Donor (50–99): Demonstrating commitment and building momentum.
+- Silver Donor (100–199): Consistent lifesaver — a trusted contributor.
+- Gold Donor (200–349): Reliable hero — key community pillar.
+- Platinum Donor (350–499): Elevated impact and recognition.
+- Diamond Donor (500–749): Exceptional generosity and influence.
+- Crimson Donor (750–999): Passionate leader inspiring peers.
+- Immortal Donor (1000+): Legendary status — a model of lifelong giving.
+
+Tech Stack:
+- Frontend: HTML5, CSS3, Vanilla JavaScript
 - Backend: Node.js, Express.js
-- Database: SQLite
-- Authentication: JWT
+- Database: SQLite (file-based)
+- Authentication: JSON Web Tokens (JWT)
 
-## Project Structure
-
-```
+Architecture & Project Structure:
 .
-├── back/               # Backend Node.js application
-│   ├── routes/        # API routes
-│   ├── app.js         # Main application file
-│   └── db.js          # Database configuration
-└── front/             # Frontend static files
-    ├── assets/        # Images and other static assets
-    ├── css/          # Stylesheets
-    └── js/           # JavaScript files
-```
+├── back/
+│   ├── app.js           — Entry point, Express server configuration
+│   ├── routes/          — API endpoints (leaderboard, user profiles)
+│   ├── db.js            — SQLite connection and schema initialization
+│   ├── middleware/      — Authentication & logging
+│   └── data/            — Persistent storage
+├── docs/                — Static HTML documentation (home, sign‑in, profile, leaderboard)
+├── readme/              — Project README with setup & system overview
+├── description.txt      — (This document)
+├── package.json         — Backend dependencies and scripts
+└── ...                  — Other config and asset files
 
-## Setup
+Database Schema:
+- users: id, name, email, blood_type, avatar, total_points, donation_count
+- donations: id, user_id, date, volume, points_awarded
 
-1. Clone the repository
-```bash
-git clone [repository-url]
-cd [repository-name]
-```
+API Endpoints:
+- GET /api/user/:id        — Fetch user profile and donation stats
+- GET /api/leaderboard     — Retrieve top donors list
+- POST /api/donate         — Record a new donation and award points
 
-2. Install dependencies
-```bash
-cd back
-npm install
-```
+Setup & Running:
+1. Clone repository & navigate to project root.
+2. cd back && npm install
+3. Copy .env.example to .env and configure variables.
+4. npm start — Launch server on default port.
+5. Use docs/home.html or navigate to server URL for the UI.
 
-3. Create .env file
-```bash
-cp .env.example .env
-```
+Contributing:
+Refer to readme/README.md for forking, branching, and PR guidelines.
 
-4. Start the server
-```bash
-npm start
-```
+License:
+ISC License — See LICENSE file for full terms.
 
-## Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
-## License
+Extra :
 
-This project is licensed under the ISC License.
+🩸 Donor Rank Tiers (Updated)
+1 ) Iron Donor
 
-## Ranking and LifePoints System
+0–49 LifePoints
 
-### Overview
-The platform implements a gamified ranking system to encourage and reward blood donations. Users earn LifePoints through donations, which determine their donor rank and unlock various features.
+Just getting started. Every drop makes a difference.
 
-### Donor Ranks
-The system features 8 distinct donor ranks based on accumulated LifePoints:
+2 ) Bronze Donor
 
-| Rank | LifePoints Range | Description |
-|------|-----------------|-------------|
-| Iron Donor | 0-49 | Just getting started. Every drop makes a difference. |
-| Bronze Donor | 50-99 | New but committed. Thank you for joining the cause. |
-| Silver Donor | 100-199 | You're on your way to becoming a lifesaver. |
-| Gold Donor | 200-349 | Reliable, steady, and saving lives. |
-| Platinum Donor | 350-499 | A trusted hero in the donation community. |
-| Diamond Donor | 500-749 | Rare, consistent, and deeply valued. |
-| Crimson Donor | 750-999 | Symbol of passion and power. A true life warrior. |
-| Immortal Donor | 1000+ | Legendary impact. Your donations echo forever. |
+50–99 LifePoints
+New but committed. Thank you for joining the cause.
 
-### LifePoints System
-- **Earning Points**: Users earn LifePoints through blood donations
-- **Point Tracking**: System maintains:
-  - Total LifePoints balance
-  - Number of donations
-  - Days until next donation
-  - Current rank
-- **Visual Feedback**: Animated point changes and rank updates
+3 ) Silver Donor
 
-### Leaderboard Features
-The platform includes a dynamic leaderboard that:
-- Ranks donors by total LifePoints
-- Displays key metrics:
-  - Rank number
-  - Donor avatar
-  - Donor name
-  - Donation count
-  - Total points
-- Offers two view modes:
-  - All Time (default)
-  - Event (for specific donation events)
-- Highlights current user
-- Features animated point changes
+100–199 LifePoints
+You're on your way to becoming a lifesaver.
 
-### Profile Integration
-User profiles showcase:
-- Current LifePoints balance
-- Donation history
-- Current rank
-- Days until next donation
-- Total lives saved
-- Rank-specific styling and themes
+4 ) Gold Donor
 
-### Technical Implementation
-#### Database Structure
-- **Users Table**:
-  - Basic info (name, email, blood type)
-  - Donor level
-  - Avatar
-- **Donations Table**:
-  - Points awarded
-  - Donation volume
-  - Date
-  - User ID
+200–349 LifePoints
+Reliable, steady, and saving lives.
 
-#### API Endpoints
-- `/api/leaderboard` - Retrieves top donors
-- `/api/user/:id` - Gets user profile with stats
-- Points calculation handled server-side
+5 ) Platinum Donor
 
-### Visual Features
-- Animated point changes
-- Rank-specific styling
-- Responsive design
-- Loading states
-- Interactive elements
-- Online status indicators
+350–499 LifePoints
+A trusted hero in the donation community.
 
-### Gamification Elements
-The system encourages regular donations through:
-- Visible progression
-- Competitive elements
-- Achievement recognition
-- Social comparison
-- Visual rewards
+6 ) Diamond Donor
 
-### Getting Started
-1. Register an account
-2. Complete your profile
-3. Schedule your first donation
-4. Earn LifePoints and climb the ranks
-5. Track your progress on the leaderboard
+500–749 LifePoints
+Rare, consistent, and deeply valued.
 
-### Support
-For questions or assistance with the ranking system, please contact support@thebottomfrags.com 
+7 ) Crimson Donor 🔴 (New — replaces Ascendant)
+
+750–999 LifePoints
+Symbol of passion and power. A true life warrior.
+
+8 ) Immortal Donor
+
+1000+ LifePoints
+Legendary impact. Your donations echo forever.

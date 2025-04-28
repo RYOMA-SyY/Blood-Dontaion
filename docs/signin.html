@@ -580,11 +580,11 @@ body {
             <form id="loginForm">
                 <h1>Welcome Back</h1>
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" id="loginEmail" name="email" placeholder="Email" required>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" id="loginPassword" name="password" placeholder="Password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="forgot-link">
@@ -605,23 +605,19 @@ body {
             <form id="registerForm">
                 <h1>Create Account</h1>
                 <div class="input-box">
-                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="text" id="registerName" name="name" placeholder="Full Name" required>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="email" id="registerEmail" name="email" placeholder="Email" required>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="password" id="registerPassword" name="password" placeholder="Password" required>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="cin" placeholder="CIN" required>
-                    <i class='bx bxs-id-card'></i>
-                </div>
-                <div class="input-box">
-                    <select name="bloodType" required>
+                    <select id="bloodType" name="bloodType" required title="Select your blood type">
                         <option value="">Select Blood Type</option>
                         <option value="A+">A+</option>
                         <option value="A-">A-</option>
@@ -701,16 +697,17 @@ registerBtn.addEventListener('click', () => {
             if (loginForm) {
                 loginForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
+                    
+                    const credentials = {
+                        email: document.getElementById('loginEmail').value,
+                        password: document.getElementById('loginPassword').value
+                    };
+
                     try {
-                        const credentials = {
-                            email: this.email.value,
-                            password: this.password.value
-                        };
                         await AuthService.login(credentials);
                         window.location.href = 'home.html';
                     } catch (error) {
-                        messageDiv.textContent = error.message;
-                        messageDiv.style.color = 'red';
+                        alert(error.message);
                     }
                 });
             }
@@ -719,19 +716,19 @@ registerBtn.addEventListener('click', () => {
             if (registerForm) {
                 registerForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
+                    
+                    const userData = {
+                        name: document.getElementById('registerName').value,
+                        email: document.getElementById('registerEmail').value,
+                        password: document.getElementById('registerPassword').value,
+                        blood_type: document.getElementById('bloodType').value
+                    };
+
                     try {
-                        const userData = {
-                            name: this.name.value,
-                            email: this.email.value,
-                            password: this.password.value,
-                            cin: this.cin.value,
-                            blood_type: this.bloodType.value
-                        };
                         await AuthService.register(userData);
                         window.location.href = 'home.html';
                     } catch (error) {
-                        messageDiv.textContent = error.message;
-                        messageDiv.style.color = 'red';
+                        alert(error.message);
                     }
                 });
             }

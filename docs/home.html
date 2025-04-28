@@ -1378,7 +1378,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
-            <a class="logo" href="home.html">
+            <a class="logo" href="/">
                 <img src="assets/img/logo.png" alt="Logo">
                 <span class="navbar-brand">THE BOTTOM FRAGS</span>
             </a>
@@ -1388,25 +1388,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto nav-links">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="LB.html">Leaderboard</a>
+                        <a class="nav-link" href="/leaderboard">Leaderboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="donate.html">Donate</a>
+                        <a class="nav-link" href="/index">Donate</a>
                     </li>
                     <div id="authButtons" class="auth-buttons">
-                        <a href="signin.html" class="btn login-btn">Login</a>
-                        <a href="signin.html" class="btn signup-btn">Sign Up</a>
+                        <a href="/signin" class="btn login-btn">Login</a>
+                        <a href="/signup" class="btn signup-btn">Sign Up</a>
                     </div>
                     <div id="profileDropdown" class="nav-item dropdown" style="display:none">
-                        <a href="profile.html" class="nav-link profile-button">
+                        <a href="/profile" class="nav-link profile-button">
                             <img id="userAvatar" src="assets/img/unknown_profile.png" alt="Profile" style="width:40px;height:40px;border-radius:50%;" />
                             <span id="profileName"></span>
                         </a>
                         <div id="dropdownMenu" class="dropdown-menu">
-                            <a class="dropdown-item" href="profile.html">Profile</a>
+                            <a class="dropdown-item" href="/profile">Profile</a>
                             <a class="dropdown-item" href="#" id="logoutButton">Logout</a>
                         </div>
                     </div>
@@ -1482,8 +1482,8 @@
                                 </div>
                             </div>
                             <div class="hero-buttons">
-                                <a href="donate.html" class="btn btn-primary-custom">Become a Donor</a>
-                                <a href="#" class="btn btn-secondary-custom">Emergency Request</a>
+                                <a href="/donate" class="btn btn-primary-custom">Become a Donor</a>
+                                <a href="/emergency" class="btn btn-secondary-custom">Emergency Request</a>
                             </div>
                         </div>
                     </div>
@@ -1503,8 +1503,8 @@
                         <h2>Sign up today.</h2>
                         <p class="signup-text">Join our community of blood donors and help save lives. Every donation counts!</p>
                         <div class="button-group">
-                            <a href="#contact" class="btn btn-learn-more">Learn More</a>
-                            <a href="signin.html" class="btn btn-get-started">Get Started</a>
+                            <a href="/contact" class="btn btn-learn-more">Learn More</a>
+                            <a href="/signup" class="btn btn-get-started">Get Started</a>
                         </div>
                     </div>
                     <!-- Video (Now on the right) -->
@@ -1656,11 +1656,11 @@
                         <div class="col-md-2 mb-4">
                             <h4>Quick Links</h4>
                             <ul class="footer-links">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Donate Blood</a></li>
-                                <li><a href="#">Request Blood</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/about">About Us</a></li>
+                                <li><a href="/donate">Donate Blood</a></li>
+                                <li><a href="/request">Request Blood</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
                         </div>
 
@@ -1668,11 +1668,11 @@
                         <div class="col-md-2 mb-4">
                             <h4>Services</h4>
                             <ul class="footer-links">
-                                <li><a href="#">Blood Donation</a></li>
-                                <li><a href="#">Blood Request</a></li>
-                                <li><a href="#">Blood Bank</a></li>
-                                <li><a href="#">Emergency Cases</a></li>
-                                <li><a href="#">Support</a></li>
+                                <li><a href="/donate">Blood Donation</a></li>
+                                <li><a href="/request">Blood Request</a></li>
+                                <li><a href="/centers">Blood Bank</a></li>
+                                <li><a href="/emergency">Emergency Cases</a></li>
+                                <li><a href="/support">Support</a></li>
                             </ul>
                         </div>
 
@@ -1708,9 +1708,9 @@
                             </div>
                             <div class="col-md-6">
                                 <ul class="footer-bottom-links">
-                                    <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
-                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="/privacy">Privacy Policy</a></li>
+                                    <li><a href="/terms">Terms & Conditions</a></li>
+                                    <li><a href="/docs/faq">FAQ</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -1830,7 +1830,7 @@
             function handleLogout() {
                 AuthService.logout();
                 updateAuthUI();
-                window.location.href = 'home.html';
+                window.location.href = '/';
             }
 
             // Close dropdown when clicking outside
@@ -1878,6 +1878,16 @@
             }
         }
     });
+    </script>
+
+    <script>
+        function handleProfileClick() {
+            if (AuthService.isLoggedIn()) {
+                window.location.href = '/profile';
+            } else {
+                window.location.href = '/signin';
+            }
+        }
     </script>
 </body>
 </html>

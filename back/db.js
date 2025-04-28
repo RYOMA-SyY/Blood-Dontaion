@@ -47,4 +47,18 @@ const donationTable = `CREATE TABLE IF NOT EXISTS donations (
 )`;
 db.run(donationTable);
 
-module.exports = db;
+// Function to reset database
+const resetDatabase = () => {
+  return new Promise((resolve, reject) => {
+    db.serialize(() => {
+      db.run('DROP TABLE IF EXISTS donations');
+      db.run('DROP TABLE IF EXISTS users');
+      db.run(userTable);
+      db.run(donationTable);
+      console.log('Database reset successfully');
+      resolve();
+    });
+  });
+};
+
+module.exports = { db, resetDatabase };
